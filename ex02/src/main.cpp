@@ -6,11 +6,11 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:11:54 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/11 14:42:53 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:20:28 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"Animal.hpp"
+#include	"AAnimal.hpp"
 #include	"Cat.hpp"
 #include	"Dog.hpp"
 #include	"WrongAnimal.hpp"
@@ -46,63 +46,17 @@ void    print_title( std::string msg, std::string clr_text, std::string clr_bord
 		std::cout << C_DEFAULT;
 }
 
-void	test_WrongAnimal( void )
-{
-	print_title( "Constructors", C_GREEN, C_YELLOW );
-	const WrongAnimal* wrongAnimal = new WrongAnimal();
-	const WrongAnimal* wrongCat = new WrongCat();
-
-	print_title( "Methods", C_GREEN, C_YELLOW );
-	std::cout << "wrongCat -> " << wrongCat << " " << std::endl;
-	std::cout << "wrongAnimal -> " << wrongAnimal << " " << std::endl;
-	std::cout << "wrongCat -> ";
-	wrongCat->makeSound();
-	std::cout << "wrongAnimal -> ";
-	wrongAnimal->makeSound();
-
-	print_title( "Destructors", C_GREEN, C_YELLOW );
-	delete wrongCat;
-	delete wrongAnimal;
-}
-
-void	test_Animal_v1( void )
-{
-	print_title( "Constructors", C_GREEN, C_YELLOW );
-	const Animal* animal = new Animal();
-	const Animal* dog = new Dog();
-	Animal* cat = new Cat();
-
-	print_title( "Method: getType", C_GREEN, C_YELLOW );
-	std::cout << "dog -> " << dog << " " << std::endl;
-	std::cout << "cat -> " << cat << " " << std::endl;
-	std::cout << "animal -> " << animal << " " << std::endl;
-
-	print_title( "Method: makeSound", C_GREEN, C_YELLOW );
-	std::cout << "cat -> ";
-	cat->makeSound();
-	std::cout << "dog -> ";
-	dog->makeSound();
-	std::cout << "animal -> ";
-	animal->makeSound();
-
-	print_title( "Attribute: _brain", C_GREEN, C_YELLOW );
-	static_cast<Cat *>(cat)->addIdea( "First idea" );
-	std::cout << "cat -> " << static_cast<Cat *>(cat) << std::endl;
-
-	print_title( "Destructors", C_GREEN, C_YELLOW );
-	delete cat;
-	delete dog;
-	delete animal;
-}
-
 void	test_Animal_v2( int size )
 {
 	int		c_size;
 	int		lower;
+	// Discomment to check that AAnimal is an abstract class and generate a compile error.
+	// AAnimal	animal;
+	// AAnimal	*animal_ptr = new AAnimal();
 
 	c_size = size * 2;
 	print_title( "Constructors", C_GREEN, C_YELLOW );
-	Animal* animals[ c_size ];
+	AAnimal* animals[ c_size ];
 
 	for ( int i = 0; i < c_size; i++ )
 	{
@@ -144,10 +98,6 @@ void	test_Animal_v2( int size )
 
 int	main( void )
 {
-	print_title( "Test: Animal V.1", C_YELLOW, C_PURPLE );
-	test_Animal_v1();
-	print_title( "Test: WrongAnimal", C_YELLOW, C_PURPLE );
-	test_WrongAnimal();
 	print_title( "Test: Animal V.2", C_YELLOW, C_PURPLE );
 	test_Animal_v2( 5 );
 	return ( 0 );
