@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:11:54 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/11 15:48:52 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:13:08 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void    print_title( std::string msg, std::string clr_text, std::string clr_bord
 int	main( void )
 {
 	print_title( "Test: Materia", C_YELLOW, C_PURPLE );
-	test_Materia();
+	// test_Materia();
 	return ( 0 );
 }

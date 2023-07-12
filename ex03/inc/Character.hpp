@@ -1,0 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Character.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/12 11:32:05 by eralonso          #+#    #+#             */
+/*   Updated: 2023/07/12 15:13:26 by eralonso         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef __CHARACTER_H__
+# define __CHARACTER_H__
+
+# include	<string>
+# include	<iostream>
+# include	"ICharacter.hpp"
+
+# define N_SLOTS	4
+
+class Character: public ICharacter
+{
+	private:
+		std::string	_name;
+		AMateria*	_inventory[ N_SLOTS ];
+		int			_currIdx;
+	public:
+		Character( void );
+		Character( std::string name );
+		Character( const Character& character );
+		~Character( void );
+		Character&	operator=( const Character& character );
+		const std::string&	getName( void ) const;
+		void				equip( AMateria* materia );
+		void				unequip( int idx );
+		void				use( int idx, ICharacter& target );
+};
+
+#endif

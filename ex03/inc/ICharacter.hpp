@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 18:48:38 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 15:19:34 by eralonso         ###   ########.fr       */
+/*   Created: 2023/07/12 11:27:41 by eralonso          #+#    #+#             */
+/*   Updated: 2023/07/12 15:35:08 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CURE_H__
-# define __CURE_H__
+#ifndef __ICHARACTER_H__
+# define __ICHARACTER_H__
 
-# include	<iostream>
 # include	<string>
+# include	<iostream>
 # include	"AMateria.hpp"
-// # include	"ICharacter.hpp"
 
-class Cure: public AMateria
+class AMateria;
+
+class ICharacter
 {
 	public:
-		Cure( void );
-		Cure( const Cure& cure );
-		~Cure( void );
-		Cure&		operator=( const Cure& cure );
-		AMateria*	clone( void ) const;
-		void		use( ICharacter& target );
+		virtual ~ICharacter( void ) {}
+		virtual const std::string&	getName( void ) const = 0;
+		// virtual void				equip( AMateria* materia ) = 0;
+		virtual void				unequip( int idx ) = 0;
+		virtual void				use( int idx, ICharacter& target ) = 0;
 };
 
 #endif
