@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:32:05 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 18:16:05 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:48:10 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ class Character: public ICharacter
 		void				equip( AMateria* materia );
 		void				unequip( int idx );
 		void				use( int idx, ICharacter& target );
+		void				printMaterias( void );
+		void				printTrash( void );
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:45:05 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 18:03:11 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:15:32 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ Floor::Floor( const Floor& floor )
 
 Floor::~Floor( void )
 {
+	std::cout << "Floor: Destructor called" << std::endl;
 	this->clean();
 }
 
@@ -54,10 +55,9 @@ Floor&	Floor::operator=( const Floor& floor )
 		if ( size > 0 && floor._first != NULL )
 		{
 			tmp = floor._first;
-			for ( int i = 0; i < size; i++ )
+			while ( tmp )
 			{
-				if ( tmp != NULL )
-					this->addNode( new AMateriaNode( *tmp ) );
+				this->addNode( new AMateriaNode( *tmp ) );
 				tmp = tmp->getNext();
 			}
 		}
@@ -84,7 +84,7 @@ void	Floor::clean( void )
 	AMateriaNode	*tmp2;
 
 	tmp = this->_first;
-	for ( int i = 0; i < this->_size; i++ )
+	while ( tmp )
 	{
 		tmp2 = tmp->getNext();
 		if ( tmp != NULL )

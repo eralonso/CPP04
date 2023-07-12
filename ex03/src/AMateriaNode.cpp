@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:34:29 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 18:08:04 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:33:18 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ AMateriaNode::AMateriaNode( const AMateriaNode& node )
 
 AMateriaNode::~AMateriaNode( void )
 {
+	std::cout << "AMateriaNode: Destructor called" << std::endl;
 	if ( this->_content != NULL )
 		delete this->_content;
 }
@@ -58,6 +59,11 @@ AMateriaNode*	AMateriaNode::getPrev( void ) const
 AMateriaNode*	AMateriaNode::getNext( void ) const
 {
 	return ( this->_next );
+}
+
+AMateria*	AMateriaNode::getContent( void ) const
+{
+	return ( this->_content );
 }
 
 void	AMateriaNode::setPrev( AMateriaNode* node )

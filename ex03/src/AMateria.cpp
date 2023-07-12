@@ -6,13 +6,13 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:46:35 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 15:34:42 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:08:35 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include	"AMateria.hpp"
 
-AMateria::AMateria( void )
+AMateria::AMateria( void ): _type( "Untype" )
 {
 	std::cout << "AMateria: Default constructor called" << std::endl;	
 }

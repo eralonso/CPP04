@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:26:09 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 15:00:31 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:10:04 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,12 @@ void	MateriaSource::learnMateria( AMateria* materia )
 AMateria*	MateriaSource::createMateria( const std::string& type )
 {
 	for ( int i = 0; i < N_MATERIAS; i++ )
-		if ( this->_materias[ i ]->getType().compare( type ) == 0 )
-			return ( this->_materias[ i ]->clone() );
+	{
+		if ( this->_materias[ i ] != NULL )
+		{
+			if ( this->_materias[ i ]->getType().compare( type ) == 0 )
+				return ( this->_materias[ i ]->clone() );
+		}
+	}
 	return ( 0 );
 }

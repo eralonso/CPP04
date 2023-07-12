@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:39:42 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 18:17:03 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:45:30 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ Character::~Character( void )
 		if ( this->_inventory[ i ] != NULL )
 			delete this->_inventory[ i ];
 	}
-	delete this->_floor;
+	if ( this->_floor != NULL )
+		delete this->_floor;
 }
 
 Character&	Character::operator=( const Character& character )
@@ -78,6 +79,7 @@ const std::string&	Character::getName( void ) const
 
 void	Character::equip( AMateria* materia )
 {
+	std::cout << "Character: equip called with materia = " << materia << std::endl;
 	if ( this->_currIdx == -1 )
 		return ;
 	for ( int i = 0; i < N_SLOTS; i++ )
@@ -96,6 +98,7 @@ void	Character::unequip( int idx )
 	if ( idx < 0 || idx >= N_SLOTS || this->_inventory[ idx ] == NULL )
 		return ;
 	this->_floor->addNode( new AMateriaNode( this->_inventory[ idx ] ) );
+	this->_inventory[ idx ] = NULL;
 	this->_currIdx = idx < this->_currIdx ? idx : this->_currIdx;
 }
 
@@ -104,4 +107,35 @@ void	Character::use( int idx, ICharacter& target )
 	if ( idx < 0 || idx >= N_SLOTS || this->_inventory[ idx ] == NULL )
 		return ;
 	this->_inventory[ idx ]->use( target );
+}
+
+void	Character::printMaterias( void )
+{
+	for ( int i = 0; i < N_SLOTS; i++ )
+	{
+		if ( this->_inventory[ i ] != NULL )
+			std::cout << "invetory[ " << i << " ] = " << this->_inventory[ i ] << std::endl;
+		else
+			std::cout << "invetory[ " << i << " ] = " << "Empty" << std::endl;
+	}
+}
+
+void	Character::printTrash( void )
+{
+	AMateriaNode*	tmp;
+	int				i;
+
+	if ( this->_floor )
+	{
+		i = 0;
+		tmp = this->_floor->getFirst();
+		while ( tmp )
+		{
+			std::cout << "Trash[ " << i << " ] = " << tmp->getContent() << std::endl;
+			tmp = tmp->getNext();
+			i++;
+		}
+	}
+	else
+		std::cout << "Empty" << std::endl;
 }
