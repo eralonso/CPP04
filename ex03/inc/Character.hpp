@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:32:05 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 15:13:26 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:16:05 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include	<string>
 # include	<iostream>
 # include	"ICharacter.hpp"
+# include	"Floor.hpp"
 
 # define N_SLOTS	4
 
@@ -25,6 +26,7 @@ class Character: public ICharacter
 		std::string	_name;
 		AMateria*	_inventory[ N_SLOTS ];
 		int			_currIdx;
+		Floor*		_floor;
 	public:
 		Character( void );
 		Character( std::string name );

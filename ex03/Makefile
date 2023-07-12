@@ -6,7 +6,7 @@
 #    By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/22 10:08:41 by eralonso          #+#    #+#              #
-#    Updated: 2023/07/11 15:25:25 by eralonso         ###   ########.fr        #
+#    Updated: 2023/07/12 17:52:14 by eralonso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,11 +54,11 @@ SRC_DIRS	:=	$(addprefix $(SRC_ROOT),$(SRC_DIRS))
 SRC_DIRS	:=	$(subst $(SPACE),:,$(SRC_DIRS))
 
 #<--------------------------------->FILES<---------------------------------->#
-FILES		:=	main AMateria Character MateriaSource Ice Cure
+FILES		:=	main AMateria Character MateriaSource Ice Cure AMateriaNode Floor
 
 #<---------------------------------->LANG<---------------------------------->#
 LANG		:=	CPP
-CFLAGS		:=	-Wall -Wextra -Werror #-fsanitize=address
+CFLAGS		:=	-Wall -Wextra -Werror
 
 ifeq ($(LANG),C)
 	CC := cc

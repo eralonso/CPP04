@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:27:41 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 15:35:08 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:37:13 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class ICharacter
 	public:
 		virtual ~ICharacter( void ) {}
 		virtual const std::string&	getName( void ) const = 0;
-		// virtual void				equip( AMateria* materia ) = 0;
+		virtual void				equip( AMateria* materia ) = 0;
 		virtual void				unequip( int idx ) = 0;
 		virtual void				use( int idx, ICharacter& target ) = 0;
 };

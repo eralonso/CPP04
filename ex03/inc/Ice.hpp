@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:04:49 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 15:19:43 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:38:04 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include	<string>
 # include	<iostream>
 # include	"AMateria.hpp"
-// # include	"ICharacter.hpp"
 
 class Ice: public AMateria
 {

@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:39:42 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 15:00:23 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:17:03 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ Character::Character( void ): _name( "Unnamed" ), _currIdx( 0 )
 	std::cout << "Character: Default constructor called" << std::endl;
 	for ( int i = 0; i < N_SLOTS; i++ )
 		this->_inventory[ i ] = NULL;
+	this->_floor = new Floor();
 }
 
 Character::Character( std::string name ): _name( name ), _currIdx( 0 )
@@ -24,6 +25,7 @@ Character::Character( std::string name ): _name( name ), _currIdx( 0 )
 	std::cout << "Character: Name constructor called" << std::endl;
 	for ( int i = 0; i < N_SLOTS; i++ )
 		this->_inventory[ i ] = NULL;
+	this->_floor = new Floor();
 }
 
 Character::Character( const Character& character ): _name( character._name ), _currIdx( character._currIdx )
@@ -35,6 +37,7 @@ Character::Character( const Character& character ): _name( character._name ), _c
 		if ( character._inventory[ i ] != NULL )
 			this->_inventory[ i ] = character._inventory[ i ]->clone();
 	}
+	this->_floor = new Floor( *character._floor );
 }
 
 Character::~Character( void )
@@ -45,6 +48,7 @@ Character::~Character( void )
 		if ( this->_inventory[ i ] != NULL )
 			delete this->_inventory[ i ];
 	}
+	delete this->_floor;
 }
 
 Character&	Character::operator=( const Character& character )
@@ -61,6 +65,8 @@ Character&	Character::operator=( const Character& character )
 				this->_inventory[ i ] = character._inventory[ i ]->clone();
 		}
 		this->_currIdx = character._currIdx;
+		if ( character._floor != NULL )
+			this->_floor = new Floor( *character._floor );
 	}
 	return ( *this );
 }
@@ -89,7 +95,7 @@ void	Character::unequip( int idx )
 {
 	if ( idx < 0 || idx >= N_SLOTS || this->_inventory[ idx ] == NULL )
 		return ;
-	// Create a class floor ( that behavior like a list ) to store the AMateria unequiped.
+	this->_floor->addNode( new AMateriaNode( this->_inventory[ idx ] ) );
 	this->_currIdx = idx < this->_currIdx ? idx : this->_currIdx;
 }
 
