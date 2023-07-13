@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:11:54 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/11 15:20:28 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 14:29:55 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	test_Animal_v2( int size )
 		}
 	}
 
-	print_title( "Destructors", C_GREEN, C_YELLOW );
+	print_title( "Destructors", C_RED, C_YELLOW );
 	for ( int i = 0; i < c_size; i++ )
 		delete animals[ i ];
 }
