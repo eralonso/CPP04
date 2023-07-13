@@ -25,20 +25,24 @@ Floor::Floor( const Floor& floor )
 	AMateriaNode	*tmp;
 
 	size = floor.getSize();
+  this->_size = 0;
+  this->_first = NULL;
+  this->_last = NULL;
 	if ( size > 0 && floor._first != NULL )
-	{
+  {
 		tmp = floor._first;
-		for ( int i = 0; i < size; i++ )
+		for ( ; this->_size < size; this->_size++ )
 		{
-			this->addNode( new AMateriaNode( *tmp ) );
+      if ( tmp != NULL )
+        this->addNode( new AMateriaNode( *tmp ) );
 			tmp = tmp->getNext();
 		}
-	}
+  }
 }
 
 Floor::~Floor( void )
 {
-	std::cout << "Floor: Destructor called" << std::endl;
+	std::cout << "Floor: Destructor called, memory address = " << this << std::endl;
 	this->clean();
 }
 
@@ -61,6 +65,7 @@ Floor&	Floor::operator=( const Floor& floor )
 				tmp = tmp->getNext();
 			}
 		}
+    this->_size = size;
 	}
 	return ( *this );
 }
@@ -83,14 +88,41 @@ void	Floor::clean( void )
 	AMateriaNode	*tmp;
 	AMateriaNode	*tmp2;
 
-	tmp = this->_first;
-	while ( tmp )
-	{
-		tmp2 = tmp->getNext();
-		if ( tmp != NULL )
-			delete tmp;
-		tmp = tmp2;
+  if ( this->_size > 0 && this->_first != NULL )
+  {
+    tmp = this->_first;
+	  while ( tmp != NULL )
+  	{
+  		tmp2 = tmp->getNext();
+  		delete tmp;
+	  	tmp = tmp2;
+    }
+    this->_size = 0;
+    this->_first = NULL;
+    this->_last = NULL;
 	}
+}
+
+void  Floor::unsetNode( AMateria* materia )
+{
+  AMateriaNode*  tmp;
+
+  tmp = this->_first;
+  while ( tmp != NULL && tmp->getContent() != materia )
+    tmp = tmp->getNext();
+  if ( tmp != NULL )
+  {
+    if ( tmp->getPrev() != NULL )
+      tmp->getPrev()->setNext( tmp->getNext() );
+    if ( tmp->getNext() != NULL )
+      tmp->getNext()->setPrev( tmp->getPrev() );
+    if ( this->_first == tmp )
+      this->_first = tmp->getNext();
+    if ( this->_last == tmp )
+      this->_last = tmp->getPrev();
+    tmp->setDelete( false );
+    delete tmp;
+  }
 }
 
 AMateriaNode*	Floor::getFirst( void ) const
@@ -111,7 +143,7 @@ AMateriaNode*	Floor::getNode( unsigned short int idx ) const
 	if ( idx < this->_size )
 	{
 		tmp = this->_first;
-		for ( ; idx < this->_size; idx++ )
+		for ( int i = 0; idx > i; i++ )
 			tmp = tmp->getNext();
 	}
 	return ( tmp );

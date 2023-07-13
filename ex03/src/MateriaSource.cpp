@@ -31,7 +31,7 @@ MateriaSource::MateriaSource( const MateriaSource& materiaSource ): _currIdx( ma
 
 MateriaSource::~MateriaSource( void )
 {
-	std::cout << "MateriaSource: Destructor called" << std::endl;
+	std::cout << "MateriaSource: Destructor called, memory address = " << this << std::endl;
 	for ( int i = 0; i < N_MATERIAS; i++ )
 	{
 		if ( this->_materias[ i ] != NULL )
@@ -60,7 +60,11 @@ MateriaSource&	MateriaSource::operator=( const MateriaSource& materiaSource )
 void	MateriaSource::learnMateria( AMateria* materia )
 {
 	if ( this->_currIdx == -1 )
-		return ;
+  {
+    if ( materia != NULL )
+      delete materia;
+    return ;
+  }
 	for ( int i = 0; i < N_MATERIAS; i++ )
 		if ( this->_materias[ i ] == materia )
 			return ;

@@ -21,6 +21,7 @@ class AMateriaNode
 		AMateriaNode*	_prev;
 		AMateriaNode*	_next;
 		AMateria*		_content;
+    bool        _delete;
 	public:
 		AMateriaNode( void );
 		AMateriaNode( AMateria* materia );
@@ -32,6 +33,7 @@ class AMateriaNode
 		AMateria*		getContent( void ) const;
 		void			setPrev( AMateriaNode* node );
 		void			setNext( AMateriaNode* node );
+    void      setDelete( bool del );
 };
 
 #endif

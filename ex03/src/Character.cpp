@@ -42,7 +42,7 @@ Character::Character( const Character& character ): _name( character._name ), _c
 
 Character::~Character( void )
 {
-	std::cout << "Character: Destructor called" << std::endl;
+	std::cout << "Character: Destructor called, memory address = " << this << std::endl;
 	for ( int i = 0; i < N_SLOTS; i++ )
 	{
 		if ( this->_inventory[ i ] != NULL )
@@ -66,6 +66,8 @@ Character&	Character::operator=( const Character& character )
 				this->_inventory[ i ] = character._inventory[ i ]->clone();
 		}
 		this->_currIdx = character._currIdx;
+    if ( this->_floor != NULL )
+      delete this->_floor;
 		if ( character._floor != NULL )
 			this->_floor = new Floor( *character._floor );
 	}
@@ -81,7 +83,11 @@ void	Character::equip( AMateria* materia )
 {
 	std::cout << "Character: equip called with materia = " << materia << std::endl;
 	if ( this->_currIdx == -1 )
-		return ;
+  {
+    if ( this->_floor != NULL )
+      this->_floor->addNode( new AMateriaNode( materia ) );
+    return ;
+  }
 	for ( int i = 0; i < N_SLOTS; i++ )
 		if ( this->_inventory[ i ] == materia )
 			return ;
@@ -91,15 +97,18 @@ void	Character::equip( AMateria* materia )
 			break ;
 	if ( this->_inventory[ this->_currIdx ] != NULL )
 		this->_currIdx = -1;
+  if ( this->_floor != NULL )
+    this->_floor->unsetNode( materia );
 }
 
 void	Character::unequip( int idx )
 {
 	if ( idx < 0 || idx >= N_SLOTS || this->_inventory[ idx ] == NULL )
 		return ;
+  std::cout << "Character: unequip called with materia = " << this->_inventory[ idx ] << std::endl;
 	this->_floor->addNode( new AMateriaNode( this->_inventory[ idx ] ) );
 	this->_inventory[ idx ] = NULL;
-	this->_currIdx = idx < this->_currIdx ? idx : this->_currIdx;
+	this->_currIdx = idx < this->_currIdx ? idx : this->_currIdx == -1 ? idx : this->_currIdx;
 }
 
 void	Character::use( int idx, ICharacter& target )
@@ -125,11 +134,11 @@ void	Character::printTrash( void )
 	AMateriaNode*	tmp;
 	int				i;
 
-	if ( this->_floor )
+	if ( this->_floor != NULL )
 	{
 		i = 0;
 		tmp = this->_floor->getFirst();
-		while ( tmp )
+		while ( tmp != NULL )
 		{
 			std::cout << "Trash[ " << i << " ] = " << tmp->getContent() << std::endl;
 			tmp = tmp->getNext();

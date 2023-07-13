@@ -25,7 +25,7 @@ Ice::Ice( const Ice& ice ): AMateria( "ice" )
 
 Ice::~Ice( void )
 {
-	std::cout << "Ice: Destructor called" << std::endl;
+	std::cout << "Ice: Destructor called, memory address = " << this << std::endl;
 }
 
 Ice&	Ice::operator=( const Ice& ice )

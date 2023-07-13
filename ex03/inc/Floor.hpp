@@ -28,6 +28,7 @@ class Floor
 		Floor&				operator=( const Floor& floor );
 		void				addNode( AMateriaNode* node );
 		void				clean( void );
+    void        unsetNode( AMateria* node);
 		AMateriaNode		*getNode( unsigned short  int idx ) const;
 		AMateriaNode		*getFirst( void ) const;
 		AMateriaNode		*getLast( void ) const;

@@ -29,7 +29,7 @@ AMateria::AMateria( const AMateria& materia ): _type( materia._type )
 
 AMateria::~AMateria( void )
 {
-	std::cout << "AMateria: Destructor called" << std::endl;
+	std::cout << "AMateria: Destructor called, memory address = " << this << std::endl;
 }
 
 AMateria&	AMateria::operator=( const AMateria& materia )

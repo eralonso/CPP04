@@ -25,7 +25,7 @@ Cure::Cure( const Cure& cure ): AMateria( "cure" )
 
 Cure::~Cure( void )
 {
-	std::cout << "Cure: Destructor called" << std::endl;
+	std::cout << "Cure: Destructor called, memory address = " << this << std::endl;
 }
 
 Cure&	Cure::operator=( const Cure& cure )

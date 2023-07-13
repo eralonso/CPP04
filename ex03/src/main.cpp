@@ -127,7 +127,7 @@ int main( void )
 		
 		vilma->printMaterias();
 		Character* stardust = new Character(*vilma);
-		stardust->printMaterias();
+    stardust->printMaterias();
 
 		tmp = src->createMateria("ice");
 		vilma->equip(tmp);
@@ -136,7 +136,7 @@ int main( void )
 		std::cout << std::endl;
 
 		std::cout << "STARDUST" << std::endl;
-		stardust->printMaterias();
+    stardust->printMaterias();
 
 
 	std::cout << std::endl;
@@ -185,25 +185,42 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	// std::cout << "10. Testing if unequiped materia is freed" << std::endl;
+  std::cout << "10. Testing if unequiped materia is freed" << std::endl;
 
-	// 	ICharacter* test = new Character("test");
+	ICharacter* test = new Character("test");
 		
-	// 	tmp = src->createMateria("ice");
-	// 	test->equip(tmp);
-	// 	test->unequip(0);
+	 	tmp = src->createMateria("ice");
+	 	test->equip(tmp);
+   	test->unequip(0);
 
-	// std::cout << std::endl;
+	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
 	std::cout << "11. Deleting \"vilma\", \"oktorok\", \"stardust\" and \"lucifer\"" << std::endl;
-	
-	// delete test;
+
+  std::cout << "TEST" << std::endl;
+	delete test;
+  std::cout << std::endl;
+  std::cout << "LUCIFER" << std::endl;
 	delete lucifer;
-	// delete stardust;
-	// delete oktorok;
-	// delete vilma;
-	// delete src;
+  std::cout << std::endl;
+  std::cout << "STARDUST" << std::endl;
+  stardust->printMaterias();
+  stardust->printTrash();
+  delete stardust;
+  std::cout << std::endl;
+  std::cout << "OKTOROK" << std::endl;
+  oktorok->printMaterias();
+  oktorok->printTrash();
+	delete oktorok;
+  std::cout << std::endl;
+  std::cout << "VILMA" << std::endl;
+  vilma->printMaterias();
+  vilma->printTrash();
+  delete vilma;
+  std::cout << std::endl;
+  std::cout << "SRC" << std::endl;
+	delete src;
 
 	return (0);
 }
