@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 21:59:00 by marza-ga          #+#    #+#             */
-/*   Updated: 2023/07/12 19:21:04 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 12:29:04 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,43 @@ $> ./a.out | cat -e
 * heals bob's wounds *$
 */
 
-#include <iostream>
-#include "AMateria.hpp"
-#include "MateriaSource.hpp"
-#include "Character.hpp"
-#include "Ice.hpp"
-#include "Cure.hpp"
+#include	<iostream>
+#include	<iomanip>
+#include	"AMateria.hpp"
+#include	"MateriaSource.hpp"
+#include	"Character.hpp"
+#include	"Ice.hpp"
+#include	"Cure.hpp"
+
+#define FILL		40
+#define C_DEFAULT	"\033[0m"
+#define C_RED		"\033[1;91m"
+#define C_GREEN		"\033[1;92m"
+#define C_YELLOW	"\033[1;93m"
+#define C_BLUE		"\033[1;94m"
+#define C_PINK		"\033[1;95m"
+#define C_CYAN		"\033[1;96m"
+#define C_WHITE		"\033[1;97m"
+#define C_PURPLE	"\033[1;38;2;150;25;250m"
+
+void    print_title( std::string msg, std::string clr_text, std::string clr_border )
+{
+	int	fill;
+	int	odd;
+	int	size;
+
+	size = msg.length() >= FILL ? msg.length() + 10 : FILL;
+	fill = ( size - msg.length() ) / 2;
+	odd = msg.length() < FILL ? msg.length() % 2 : 0;
+	std::cout << clr_border;
+	std::cout << "\n " << std::setfill( '_' ) << std::setw( size ) << "" << std::endl;
+	std::cout << "|" << std::setfill( ' ' ) << std::setw( size + 1 ) << "|" << std::endl;
+	std::cout << "|" << std::setfill( ' ' ) << std::setw( size + 1 ) << "|" << std::endl;
+	std::cout << "|" << std::setfill( ' ' ) << std::setw( fill + odd ) << "" << clr_text << msg << clr_border << std::setw( fill + 1 ) << "|" << std::endl;
+	std::cout << "|" << std::setfill( ' ' ) << std::setw( size + 1 ) << "|" << std::endl;
+	std::cout << "|" << std::setfill( '_' ) << std::setw( size + 2 ) << "|\n" << std::endl;
+	std::cout << C_DEFAULT;
+}
 
 // int main( void )
 // {
@@ -48,7 +79,8 @@ $> ./a.out | cat -e
 
 int main( void )
 {
-	std::cout << "1. Creating MateriaSource" << std::endl; 
+	// std::cout << "1. Creating MateriaSource" << std::endl; 
+	print_title( "1. Creating MateriaSource", C_GREEN, C_YELLOW );
 		IMateriaSource* src = new MateriaSource();
 		std::cout << std::endl;
 		//src->printMaterias();
@@ -56,7 +88,8 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	std::cout << "2. \"src\" learning 5 materias" << std::endl;
+	// std::cout << "2. \"src\" learning 5 materias" << std::endl;
+	print_title( "2. \"src\" learning 5 materias", C_GREEN, C_YELLOW );
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
 		src->learnMateria(new Ice());
@@ -73,7 +106,8 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	std::cout << "3. Creating Character \"vilma\" and \"oktorok\"" << std::endl;
+	// std::cout << "3. Creating Character \"vilma\" and \"oktorok\"" << std::endl;
+	print_title( "3. Creating Character \"vilma\" and \"oktorok\"", C_GREEN, C_YELLOW );
 		Character* vilma = new Character("vilma");
 		vilma->printMaterias();
 		std::cout << std::endl;
@@ -84,7 +118,8 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	std::cout << "4. \"vilma\" trying to equip 5 materias and \"oktorok\" one materia" << std::endl;
+	// std::cout << "4. \"vilma\" trying to equip 5 materias and \"oktorok\" one materia" << std::endl;
+	print_title( "4. \"vilma\" trying to equip 5 materias and \"oktorok\" one materia", C_GREEN, C_YELLOW );
 		vilma->equip(NULL);
 		
 		AMateria* tmp;
@@ -109,7 +144,8 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	std::cout << "5. Testing Character Assignation overload \"vilma = oktorok\" for deep copy and changed vilma afterwards" << std::endl;	
+	// std::cout << "5. Testing Character Assignation overload \"vilma = oktorok\" for deep copy and changed vilma afterwards" << std::endl;	
+	print_title( "5. Testing Character Assignation overload \"vilma = oktorok\" for deep copy and changed vilma afterwards", C_GREEN, C_YELLOW );
 		*oktorok = *vilma;
 		
 		vilma->unequip(0);
@@ -123,7 +159,8 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	std::cout << "6. Testing character copy constructor for deep copy \"stardust = Character(vilma)\" and changed vilma afterwards" << std::endl;
+	// std::cout << "6. Testing character copy constructor for deep copy \"stardust = Character(vilma)\" and changed vilma afterwards" << std::endl;
+	print_title( "6. Testing character copy constructor for deep copy \"stardust = Character(vilma)\" and changed vilma afterwards", C_GREEN, C_YELLOW );
 		
 		vilma->printMaterias();
 		Character* stardust = new Character(*vilma);
@@ -143,7 +180,8 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 	
-	std::cout << "7. \"vilma\" using all equiped materias on \"oktorok\" " << std::endl;
+	// std::cout << "7. \"vilma\" using all equiped materias on \"oktorok\" " << std::endl;
+	print_title( "7. \"vilma\" using all equiped materias on \"oktorok\" ", C_GREEN, C_YELLOW );
 		vilma->use(0, *oktorok);
 		vilma->use(1, *oktorok);
 		vilma->use(2, *oktorok);
@@ -154,7 +192,8 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	std::cout << "8. \"vilma\" trying to use unequiped materias on \"oktorok\" " << std::endl;
+	// std::cout << "8. \"vilma\" trying to use unequiped materias on \"oktorok\" " << std::endl;
+	print_title( "8. \"vilma\" trying to use unequiped materias on \"oktorok\" ", C_GREEN, C_YELLOW );
 		vilma->unequip(0);
 		vilma->use(0, *oktorok);
 
@@ -162,7 +201,8 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	std::cout << "9. New character \"lucifer\" equipping and unequipping materias" << std::endl;
+	// std::cout << "9. New character \"lucifer\" equipping and unequipping materias" << std::endl;
+	print_title( "9. New character \"lucifer\" equipping and unequipping materias", C_GREEN, C_YELLOW );
 		ICharacter* lucifer = new Character("lucifer");
 		AMateria *cure = new Cure;
 		AMateria *ice = new Ice;
@@ -185,7 +225,8 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-  std::cout << "10. Testing if unequiped materia is freed" << std::endl;
+	// std::cout << "10. Testing if unequiped materia is freed" << std::endl;
+	print_title( "10. Testing if unequiped materia is freed", C_GREEN, C_YELLOW );
 
 	ICharacter* test = new Character("test");
 		
@@ -196,7 +237,8 @@ int main( void )
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
-	std::cout << "11. Deleting \"vilma\", \"oktorok\", \"stardust\" and \"lucifer\"" << std::endl;
+	// std::cout << "11. Deleting \"vilma\", \"oktorok\", \"stardust\" and \"lucifer\"" << std::endl;
+	print_title( "11. Deleting \"vilma\", \"oktorok\", \"stardust\" and \"lucifer\"", C_RED, C_YELLOW );
 
   std::cout << "TEST" << std::endl;
 	delete test;
