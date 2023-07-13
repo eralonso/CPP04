@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:32:26 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/10 18:53:41 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:09:56 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Cat::Cat( const Cat& cat ): Animal( cat )
 Cat::~Cat( void )
 {
 	std::cout << "Cat: Destructor called" << std::endl;
-	if ( this->_brain )
+	if ( this->_brain != NULL )
 		delete this->_brain;
 }
 
@@ -36,7 +36,7 @@ Cat&	Cat::operator=( const Cat& cat )
 	std::cout << "Cat: Assignation operator called" << std::endl;
 	if ( this != &cat )
 	{
-		if ( this->_brain )
+		if ( this->_brain != NULL )
 			delete this->_brain;
 		this->_brain = cat._brain ? new Brain( *cat._brain ) : new Brain();
 		this->_type = cat._type;
@@ -51,20 +51,20 @@ void	Cat::makeSound( void ) const
 
 void	Cat::addIdea( std::string idea )
 {
-	if ( this->_brain )
+	if ( this->_brain != NULL )
 		this->_brain->b_addIdea( idea );
 }
 
 std::string	Cat::getIdea( unsigned int idx ) const
 {
-	if ( this->_brain )
+	if ( this->_brain != NULL )
 		return ( this->_brain->b_getIdea( idx ) );
 	return ( NULL );
 }
 
 std::string	Cat::getCurrentIdea( void ) const
 {
-	if ( this->_brain )
+	if ( this->_brain != NULL )
 		return ( this->_brain->b_getCurrentIdea() );
 	return ( NULL );
 }
@@ -83,7 +83,7 @@ std::ostream&	operator<<( std::ostream& out, Cat& cat )
 
 std::ostream&	operator<<( std::ostream& out, Cat* cat )
 {
-	if ( cat )
+	if ( cat != NULL )
 	{
 		out << "Type: " << cat->getType() << " ";
 		cat->print_brain();

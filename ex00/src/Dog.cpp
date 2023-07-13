@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:44:50 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/10 13:23:27 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:01:13 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ Dog::~Dog( void )
 Dog&	Dog::operator=( const Dog& dog )
 {
 	std::cout << "Dog: Assignation operator called" << std::endl;
-	if ( this != &dog )
-		this->_type = dog._type;
+	this->_type = dog._type;
 	return ( *this );
 }
 

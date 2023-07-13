@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:57:25 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/10 13:41:10 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:03:17 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ WrongAnimal::~WrongAnimal( void )
 
 std::string	WrongAnimal::getType( void ) const
 {
-	return (this->_type);
+	return ( this->_type );
 }
 
 void	WrongAnimal::makeSound( void ) const
@@ -45,8 +45,7 @@ void	WrongAnimal::makeSound( void ) const
 WrongAnimal&	WrongAnimal::operator=( const WrongAnimal& wrongAnimal )
 {
 	std::cout << "WrongAnimal: Assignation operator called" << std::endl;
-	if ( this != &wrongAnimal )
-		this->_type = wrongAnimal._type;
+	this->_type = wrongAnimal._type;
 	return ( *this );
 }
 

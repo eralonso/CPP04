@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:41:11 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/10 18:52:36 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:07:55 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,6 @@ Brain::Brain( std::string idea ): _idx( 1 )
 	this->_ideas[ 0 ] = idea;
 	for ( unsigned int i = 1; i < MAX_IDEAS; i++ )
 		this->_ideas[ i ] = "(default idea)";
-}
-
-Brain::Brain( std::string ideas[ 100 ] ): _idx( 0 )
-{
-	std::cout << "Brain: Ideas constructor called" << std::endl;
-	for ( unsigned int i = 0; i < MAX_IDEAS; i++ )
-		this->_ideas[ i ] = ideas[ i ];
 }
 
 Brain::Brain( const Brain& brain )
@@ -62,7 +55,7 @@ Brain&	Brain::operator=( const Brain& brain )
 void	Brain::b_addIdea( std::string idea )
 {
 	this->_ideas[ this->_idx ] = idea;
-	this->_idx = this->_idx == (MAX_IDEAS - 1) ? 0 : (this->_idx + 1);
+	this->_idx = this->_idx == ( MAX_IDEAS - 1 ) ? 0 : ( this->_idx + 1 );
 }
 
 std::string	Brain::b_getIdea( unsigned int idx ) const
@@ -72,12 +65,12 @@ std::string	Brain::b_getIdea( unsigned int idx ) const
 		std::cerr << idx << " -> Invalid index, range must be between 0 and " << MAX_IDEAS - 1 << "." << std::endl;
 		return ( NULL );
 	}
-	return (this->_ideas[ idx ]);
+	return ( this->_ideas[ idx ] );
 }
 
 std::string	Brain::b_getCurrentIdea( void ) const
 {
-	return (this->_ideas[ this->_idx ]);
+	return ( this->_ideas[ this->_idx ] );
 }
 
 std::ostream&	operator<<( std::ostream& out, Brain& brain )
@@ -89,7 +82,7 @@ std::ostream&	operator<<( std::ostream& out, Brain& brain )
 
 std::ostream&	operator<<( std::ostream& out, Brain* brain )
 {
-	if ( brain )
+	if ( brain != NULL )
 	{
 		for ( int i = 0; i < MAX_IDEAS; i++ )
 		{

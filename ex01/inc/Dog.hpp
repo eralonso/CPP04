@@ -6,15 +6,13 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:55:06 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/10 18:43:47 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:10:39 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __DOG_H__
 # define __DOG_H__
 
-# include	<iostream>
-# include	<string>
 # include	"Animal.hpp"
 # include	"Brain.hpp"
 

@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:57:25 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/10 18:27:20 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:06:27 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Animal::~Animal( void )
 
 std::string	Animal::getType( void ) const
 {
-	return (this->_type);
+	return ( this->_type );
 }
 
 void	Animal::makeSound( void ) const
@@ -45,8 +45,7 @@ void	Animal::makeSound( void ) const
 Animal&	Animal::operator=( const Animal& animal )
 {
 	std::cout << "Animal: Assignation operator called" << std::endl;
-	if ( this != &animal )
-		this->_type = animal._type;
+	this->_type = animal._type;
 	return ( *this );
 }
 

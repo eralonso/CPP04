@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:19:27 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/10 18:27:44 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:57:25 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ class Brain
 	public:
 		Brain( void );
 		Brain( std::string idea );
-		Brain( std::string ideas[ MAX_IDEAS ] );
 		Brain( const Brain& brain );
 		~Brain( void );
 		Brain&		operator=( const Brain& brain );

@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:32:26 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/10 13:24:09 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:01:21 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ WrongCat::~WrongCat( void )
 WrongCat&	WrongCat::operator=( const WrongCat& wrongCat )
 {
 	std::cout << "WrongCat: Assignation operator called" << std::endl;
-	if ( this != &wrongCat )
-		this->_type = wrongCat._type;
+	this->_type = wrongCat._type;
 	return ( *this );
 }
 
-void	WrongCat::makeSound( void )
+void	WrongCat::makeSound( void ) const
 {
 	std::cout << "Meeeeoooww" << std::endl;
 }

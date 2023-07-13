@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:32:26 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/10 13:23:50 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:01:09 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ Cat::~Cat( void )
 Cat&	Cat::operator=( const Cat& cat )
 {
 	std::cout << "Cat: Assignation operator called" << std::endl;
-	if ( this != &cat )
-		this->_type = cat._type;
+	this->_type = cat._type;
 	return ( *this );
 }
 

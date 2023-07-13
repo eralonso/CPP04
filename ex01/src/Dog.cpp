@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:44:50 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/10 18:53:51 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:11:15 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Dog::Dog( const Dog& dog ): Animal( dog )
 Dog::~Dog( void )
 {
 	std::cout << "Dog: Destructor called" << std::endl;
-	if ( this->_brain )
+	if ( this->_brain != NULL )
 		delete this->_brain;
 }
 
@@ -36,7 +36,7 @@ Dog&	Dog::operator=( const Dog& dog )
 	std::cout << "Dog: Assignation operator called" << std::endl;
 	if ( this != &dog )
 	{
-		if ( this->_brain )
+		if ( this->_brain != NULL )
 			delete this->_brain;
 		this->_brain = dog._brain ? new Brain( *dog._brain ) : new Brain();
 		this->_type = dog._type;
@@ -51,20 +51,20 @@ void	Dog::makeSound( void ) const
 
 void	Dog::addIdea( std::string idea )
 {
-	if ( this->_brain )
+	if ( this->_brain != NULL )
 		this->_brain->b_addIdea( idea );
 }
 
 std::string	Dog::getIdea( unsigned int idx ) const
 {
-	if ( this->_brain )
+	if ( this->_brain != NULL )
 		return ( this->_brain->b_getIdea( idx ) );
 	return ( NULL );
 }
 
 std::string	Dog::getCurrentIdea( void ) const
 {
-	if ( this->_brain )
+	if ( this->_brain != NULL )
 		return ( this->_brain->b_getCurrentIdea() );
 	return ( NULL );
 }
@@ -83,7 +83,7 @@ std::ostream&	operator<<( std::ostream& out, Dog& dog )
 
 std::ostream&	operator<<( std::ostream& out, Dog* dog )
 {
-	if ( dog )
+	if ( dog != NULL )
 	{
 		out << "Type: " << dog->getType() << " ";
 		dog->print_brain();
