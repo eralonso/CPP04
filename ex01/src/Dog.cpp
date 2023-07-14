@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:44:50 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/13 19:11:15 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:17:36 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,24 @@ std::string	Dog::getCurrentIdea( void ) const
 	return ( NULL );
 }
 
-void	Dog::print_brain( void ) const
+void	Dog::print_brain( std::ostream& out ) const
 {
-	std::cout << this->_brain;
+	out << this->_brain;
 }
 
-std::ostream&	operator<<( std::ostream& out, Dog& dog )
+std::ostream&	operator<<( std::ostream& out, const Dog& dog )
 {
 	out << "Type: " << dog.getType() << " ";
-	dog.print_brain();
+	dog.print_brain( out );
 	return ( out );
 }
 
-std::ostream&	operator<<( std::ostream& out, Dog* dog )
+std::ostream&	operator<<( std::ostream& out, const Dog* dog )
 {
 	if ( dog != NULL )
 	{
 		out << "Type: " << dog->getType() << " ";
-		dog->print_brain();
+		dog->print_brain( out );
 	}
 	return ( out );
 }

@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:52:29 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/14 11:18:11 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:18:23 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ class Cat: public Animal
 		void		addIdea( std::string idea );
 		std::string	getIdea( unsigned int idx ) const;
 		std::string	getCurrentIdea( void ) const;
-		void		print_brain( void ) const;
+		void		print_brain( std::ostream& out ) const;
 };
 
-std::ostream&	operator<<( std::ostream& out, Cat& cat );
-std::ostream&	operator<<( std::ostream& out, Cat* cat );
+std::ostream&	operator<<( std::ostream& out, const Cat& cat );
+std::ostream&	operator<<( std::ostream& out, const Cat* cat );
 
 #endif

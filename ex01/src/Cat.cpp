@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:32:26 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/13 19:09:56 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:18:12 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Cat::Cat( void ): Animal( "Cat" )
 Cat::Cat( const Cat& cat ): Animal( cat )
 {
 	std::cout << "Cat: Copy constructor called" << std::endl;	
-	this->_brain = cat._brain ? new Brain( *cat._brain ) : new Brain();
+	this->_brain = cat._brain != NULL ? new Brain( *cat._brain ) : new Brain();
 }
 
 Cat::~Cat( void )
@@ -69,24 +69,24 @@ std::string	Cat::getCurrentIdea( void ) const
 	return ( NULL );
 }
 
-void	Cat::print_brain( void ) const
+void	Cat::print_brain( std::ostream& out ) const
 {
-	std::cout << this->_brain;
+	out << this->_brain;
 }
 
-std::ostream&	operator<<( std::ostream& out, Cat& cat )
+std::ostream&	operator<<( std::ostream& out, const Cat& cat )
 {
 	out << "Type: " << cat.getType() << " ";
-	cat.print_brain();
+	cat.print_brain( out );
 	return ( out );
 }
 
-std::ostream&	operator<<( std::ostream& out, Cat* cat )
+std::ostream&	operator<<( std::ostream& out, const Cat* cat )
 {
 	if ( cat != NULL )
 	{
 		out << "Type: " << cat->getType() << " ";
-		cat->print_brain();
+		cat->print_brain( out );
 	}
 	return ( out );
 }
