@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:32:26 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/14 14:18:12 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:55:39 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,14 @@ std::string	Cat::getCurrentIdea( void ) const
 	return ( NULL );
 }
 
-void	Cat::print_brain( std::ostream& out ) const
+unsigned int	Cat::getIndex( void ) const
+{
+	if ( this->_brain != NULL )
+		return ( this->_brain->b_getIndex() );
+	return ( -1 );
+}
+
+void	Cat::printBrain( std::ostream& out ) const
 {
 	out << this->_brain;
 }
@@ -77,7 +84,7 @@ void	Cat::print_brain( std::ostream& out ) const
 std::ostream&	operator<<( std::ostream& out, const Cat& cat )
 {
 	out << "Type: " << cat.getType() << " ";
-	cat.print_brain( out );
+	cat.printBrain( out );
 	return ( out );
 }
 
@@ -86,7 +93,7 @@ std::ostream&	operator<<( std::ostream& out, const Cat* cat )
 	if ( cat != NULL )
 	{
 		out << "Type: " << cat->getType() << " ";
-		cat->print_brain( out );
+		cat->printBrain( out );
 	}
 	return ( out );
 }

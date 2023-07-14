@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:41:11 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/14 14:52:35 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:53:59 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ void	Brain::b_addIdea( std::string idea )
 	this->_idx = this->_idx == ( MAX_IDEAS - 1 ) ? 0 : ( this->_idx + 1 );
 }
 
+unsigned int	Brain::b_getIndex( void ) const
+{
+	return ( this->_idx );
+}
+
 std::string	Brain::b_getIdea( unsigned int idx ) const
 {
 	if ( idx >= MAX_IDEAS )
@@ -88,7 +93,7 @@ std::ostream&	operator<<( std::ostream& out, Brain* brain )
 		{
 			out << "Idea " << i << ": " << brain->b_getIdea( i );
 			if ( i + 1 < MAX_IDEAS )
-				out << " ";
+				out << " | ";
 		}
 	}
 	return ( out );
