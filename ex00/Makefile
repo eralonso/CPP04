@@ -94,11 +94,11 @@ vpath %.d $(DEP_ROOT)
 
 define msg_creating
 	printf "\r$(3)$(1): $(YELLOW)$(2).$(DEF_COLOR)                                                                 \r"
-	sleep 0.1
+	sleep 0.01
 	printf "\r$(3)$(1): $(YELLOW)$(2)..$(DEF_COLOR)                                                                \r"
-	sleep 0.1
+	sleep 0.01
 	printf "\r$(3)$(1): $(YELLOW)$(2)...$(DEF_COLOR)                                                               \r"
-	sleep 0.1
+	sleep 0.01
 endef
 
 create_dir = $(shell $(MKD) $(1))

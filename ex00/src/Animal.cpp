@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:57:25 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/13 19:03:05 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:32:40 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ std::ostream&	operator<<( std::ostream& out, const Animal& animal )
 
 std::ostream&	operator<<( std::ostream& out, const Animal* animal )
 {
-	out << "Type: " << animal->getType();
+	if ( animal != NULL )
+		out << "Type: " << animal->getType();
 	return ( out );
 }

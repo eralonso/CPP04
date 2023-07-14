@@ -6,7 +6,7 @@
 #    By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/22 10:08:41 by eralonso          #+#    #+#              #
-#    Updated: 2023/07/10 15:09:45 by eralonso         ###   ########.fr        #
+#    Updated: 2023/07/14 13:09:13 by eralonso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,11 +94,11 @@ vpath %.d $(DEP_ROOT)
 
 define msg_creating
 	printf "\r$(3)$(1): $(YELLOW)$(2).$(DEF_COLOR)                                                                 \r"
-	sleep 0.1
+	sleep 0.01
 	printf "\r$(3)$(1): $(YELLOW)$(2)..$(DEF_COLOR)                                                                \r"
-	sleep 0.1
+	sleep 0.01
 	printf "\r$(3)$(1): $(YELLOW)$(2)...$(DEF_COLOR)                                                               \r"
-	sleep 0.1
+	sleep 0.01
 endef
 
 create_dir = $(shell $(MKD) $(1))
