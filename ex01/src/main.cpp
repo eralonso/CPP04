@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:11:54 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/15 13:38:01 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:00:11 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,20 +184,25 @@ void	test_Animal_basic_v2( Animal* animals[], unsigned short int size, unsigned 
 	}
 }
 
-void	test_Animal_advanced_v2( Animal* animals[], unsigned short int size, unsigned int c_size, unsigned short int (*cmp)( unsigned int , unsigned int ) )
+void	test_assignation_operator( Animal* animals[], unsigned short int size)
 {
-	print_title( "Assignation operator Tests", C_PURPLE, C_YELLOW);
-	print_title( "animals[ First Cat ] = animals[ First dog ]", C_PURPLE, C_YELLOW );
+	print_title( "animals[ First Cat ] = animals[ First dog ]", C_PINK, C_YELLOW );
 	std::cout << C_WHITE;
 	*( static_cast<Cat *>( animals[ 0 ] ) ) = *( static_cast<Cat *>( animals[ size ] ) );
-	std::cout << "animal[ 0 ] -> getIdea( 0 ): " << static_cast<Dog *>( animals[ 0 ] )->getIdea( 0 );
-	std::cout << " |===| animal[ " << size << " ] -> getIdea( 0 ): " << static_cast<Dog *>( animals[ size ] )->getIdea( 0 ) << std::endl;
+	std::cout << "animal[ 0 ] -> getIdea( 0 ): " << static_cast<Dog *>( animals[ 0 ] )->getIdea( 0 ) << std::endl;
+	std::cout << "  		  |" << std::endl;
+	std::cout << "  		  |" << std::endl;
+	std::cout << "animal[ " << size << " ] -> getIdea( 0 ): " << static_cast<Dog *>( animals[ size ] )->getIdea( 0 ) << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
 	std::cout << "animal[ 0 ] -> makeSound(): ";
 	static_cast<Dog *>( animals[ 0 ] )->makeSound();
-	std::cout << " |===| animal[ " << size << " ] -> makeSound(): ";
+	std::cout << "  		  |" << std::endl;
+	std::cout << "  		  |" << std::endl;
+	std::cout << "animal[ " << size << " ] -> makeSound(): ";
 	static_cast<Dog *>( animals[ size ] )->makeSound();
 	std::cout << std::endl;
-	print_title( "animals[ 0 ] = animals[ 0 ]", C_PURPLE, C_YELLOW );
+	print_title( "animals[ 0 ] = animals[ 0 ]", C_PINK, C_YELLOW );
 	std::cout << C_WHITE;
 	*( static_cast<Cat *>( animals[ 0 ] ) ) = *( static_cast<Cat *>( animals[ 0 ] ) );
 	std::cout << "animal[ 0 ] -> getIdea( 0 ): " << static_cast<Cat *>( animals[ 0 ] )->getIdea( 0 );
@@ -205,9 +210,80 @@ void	test_Animal_advanced_v2( Animal* animals[], unsigned short int size, unsign
 	std::cout << " |---| makeSound(): ";
 	static_cast<Dog *>( animals[ 0 ] )->makeSound();
 	std::cout << std::endl;
-	( void )c_size;
+}
+
+void	test_addIdea_getIndex_getCurrentIdea( Animal* animals[], unsigned short int size, bool dog_edition )
+{
+	unsigned int	idx;
+	std::string		title;
+	std::string		idea;
+
+	idx = dog_edition == true ? size : 0;
+	print_title( "getIndex() && getCurrentIdea()", C_PINK, C_YELLOW );
+	std::cout << C_WHITE;
+	std::cout << "animals[ " << idx << " ]->getIndex(): " << static_cast<Cat *>( animals[ idx ] )->getIndex() << std::endl;
+	std::cout << "animals[ " << idx << " ]->getCurrentIdea(): " << static_cast<Cat *>( animals[ idx ] )->getCurrentIdea() << std::endl;
+	title = "Adding 99 ideas to animals[ " + std::to_string( idx ) + " ]: animals[ " + std::to_string( idx ) +  " ]->addIdea( \"Test Idea i\" )";
+	print_title( title, C_PINK, C_YELLOW );
+	std::cout << C_WHITE;
+	for ( unsigned int i = 1; i < MAX_IDEAS; i++)
+	{
+		idea = "Test Idea " + std::to_string( i );
+		static_cast<Cat *>( animals[ idx ] )->addIdea( idea );
+	}
+	std::cout << "animals[ " << idx << " ]->printBrain( std::cout ) = " << std::endl;
+	static_cast<Cat *>( animals[ idx ] )->printBrain( std::cout );
+	print_title( "getIndex()", C_PINK, C_YELLOW );
+	std::cout << C_WHITE;
+	std::cout << "animals[ " << idx << " ]->getIndex(): " << static_cast<Cat *>( animals[ idx ] )->getIndex() << std::endl;
+	std::cout << "animals[ " << idx << " ]->getCurrentIdea(): " << static_cast<Cat *>( animals[ idx ] )->getCurrentIdea() << std::endl;
+	title = "Adding 1 idea to animals[ " + std::to_string( idx ) + " ]: animals[ " + std::to_string( idx ) +  " ]->addIdea( \"Overflow test idea\" )";
+	print_title( title, C_PINK, C_YELLOW );
+	std::cout << C_WHITE;
+	static_cast<Cat *>( animals[ idx ] )->addIdea( "Overflow test idea" );
+	std::cout << "animals[ " << idx << " ]->printBrain( std::cout ) = " << std::endl;
+	static_cast<Cat *>( animals[ idx ] )->printBrain( std::cout );
+	print_title( "getIndex()", C_PINK, C_YELLOW );
+	std::cout << C_WHITE;
+	std::cout << "animals[ " << idx << " ]->getIndex(): " << static_cast<Cat *>( animals[ idx ] )->getIndex() << std::endl;
+	std::cout << "animals[ " << idx << " ]->getCurrentIdea(): " << static_cast<Cat *>( animals[ idx ] )->getCurrentIdea() << std::endl;
 	( void )size;
-	( void )cmp;
+}
+
+void	test_getIdea_idx( Animal* animals[], unsigned int idx, long int idea_idx )
+{
+	std::string		title;
+
+	title = "animals[ " + std::to_string( idx ) + " ]: animals[ " + std::to_string( idx ) +  " ]->getIdea( " + std::to_string( idea_idx ) + " )";
+	print_title( title, C_PINK, C_YELLOW );
+	std::cout << C_WHITE;
+	std::cout << "animals[ " << idx << " ]->getIdea( " << idea_idx << " ): " << static_cast<Cat *>( animals[ idx ] )->getIdea( idea_idx ) << std::endl;	
+}
+
+void	test_getIdea( Animal* animals[], unsigned short int size, bool dog_edition )
+{
+	unsigned int	idx;
+
+	idx = dog_edition == true ? size : 0;
+	test_getIdea_idx( animals, idx, -1 );
+	test_getIdea_idx( animals, idx, 0 );
+	test_getIdea_idx( animals, idx, 1 );
+	test_getIdea_idx( animals, idx, 99 );
+	test_getIdea_idx( animals, idx, 100 );
+}
+
+void	test_Animal_advanced_v2( Animal* animals[], unsigned short int size )
+{
+	print_title( "Assignation operator Tests", C_PURPLE, C_YELLOW);
+	test_assignation_operator( animals, size );
+	print_title( "addIdea && getIndex && getCurrenIdea Tests: Cat Edition", C_PURPLE, C_YELLOW);
+	test_addIdea_getIndex_getCurrentIdea( animals, size, false );
+	print_title( "addIdea && getIndex && getCurrenIdea Tests: Dog Edition", C_PURPLE, C_YELLOW);
+	test_addIdea_getIndex_getCurrentIdea( animals, size, true );
+	print_title( "getIdea Tests: Cat Edition", C_PURPLE, C_YELLOW);
+	test_getIdea( animals, size, false );
+	print_title( "getIdea Tests: Dog Edition", C_PURPLE, C_YELLOW);
+	test_getIdea( animals, size, true );
 	return ;
 }
 
@@ -248,10 +324,10 @@ void	test_Animal_v2( unsigned short int size )
 		std::cout << std::endl;
 	}
 
-	print_title( "Basic", C_BLUE, C_YELLOW );
+	print_title( "BASIC", C_BLUE, C_YELLOW );
 	test_Animal_basic_v2( animals, size, c_size, lower_than );
-	print_title( "Advanced", C_BLUE, C_YELLOW );
-	test_Animal_advanced_v2( animals, size, c_size, lower_than );
+	print_title( "ADVANCED", C_BLUE, C_YELLOW );
+	test_Animal_advanced_v2( animals, size );
 
 	print_title( "Destructors", C_RED, C_YELLOW );
 	for ( unsigned int i = 0; i < c_size; i++ )

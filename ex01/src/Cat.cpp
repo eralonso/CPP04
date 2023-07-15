@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:32:26 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/15 12:59:24 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:19:52 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ std::string	Cat::getIdea( unsigned int idx ) const
 {
 	if ( this->_brain != NULL )
 		return ( this->_brain->b_getIdea( idx ) );
-	return ( NULL );
+	return ( "" );
 }
 
 std::string	Cat::getCurrentIdea( void ) const
 {
 	if ( this->_brain != NULL )
 		return ( this->_brain->b_getCurrentIdea() );
-	return ( NULL );
+	return ( "" );
 }
 
 unsigned int	Cat::getIndex( void ) const

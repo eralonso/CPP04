@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:41:11 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/14 18:53:59 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:19:59 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ std::string	Brain::b_getIdea( unsigned int idx ) const
 	if ( idx >= MAX_IDEAS )
 	{
 		std::cerr << idx << " -> Invalid index, range must be between 0 and " << MAX_IDEAS - 1 << "." << std::endl;
-		return ( NULL );
+		return ( "" );
 	}
 	return ( this->_ideas[ idx ] );
 }

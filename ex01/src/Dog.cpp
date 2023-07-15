@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:44:50 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/15 12:53:00 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:19:40 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ std::string	Dog::getIdea( unsigned int idx ) const
 {
 	if ( this->_brain != NULL )
 		return ( this->_brain->b_getIdea( idx ) );
-	return ( NULL );
+	return ( "" );
 }
 
 std::string	Dog::getCurrentIdea( void ) const
 {
 	if ( this->_brain != NULL )
 		return ( this->_brain->b_getCurrentIdea() );
-	return ( NULL );
+	return ( "" );
 }
 
 unsigned int	Dog::getIndex( void ) const
