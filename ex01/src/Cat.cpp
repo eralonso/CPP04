@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:32:26 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/14 18:55:39 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:59:24 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Cat&	Cat::operator=( const Cat& cat )
 	{
 		if ( this->_brain != NULL )
 			delete this->_brain;
-		this->_brain = cat._brain ? new Brain( *cat._brain ) : new Brain();
+		this->_brain = cat._brain != NULL ? new Brain( *cat._brain ) : new Brain();
 		this->_type = cat._type;
 	}
 	return ( *this );

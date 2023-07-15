@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:11:54 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/14 19:20:18 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:38:01 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,9 +186,27 @@ void	test_Animal_basic_v2( Animal* animals[], unsigned short int size, unsigned 
 
 void	test_Animal_advanced_v2( Animal* animals[], unsigned short int size, unsigned int c_size, unsigned short int (*cmp)( unsigned int , unsigned int ) )
 {
-	( void )size;
+	print_title( "Assignation operator Tests", C_PURPLE, C_YELLOW);
+	print_title( "animals[ First Cat ] = animals[ First dog ]", C_PURPLE, C_YELLOW );
+	std::cout << C_WHITE;
+	*( static_cast<Cat *>( animals[ 0 ] ) ) = *( static_cast<Cat *>( animals[ size ] ) );
+	std::cout << "animal[ 0 ] -> getIdea( 0 ): " << static_cast<Dog *>( animals[ 0 ] )->getIdea( 0 );
+	std::cout << " |===| animal[ " << size << " ] -> getIdea( 0 ): " << static_cast<Dog *>( animals[ size ] )->getIdea( 0 ) << std::endl;
+	std::cout << "animal[ 0 ] -> makeSound(): ";
+	static_cast<Dog *>( animals[ 0 ] )->makeSound();
+	std::cout << " |===| animal[ " << size << " ] -> makeSound(): ";
+	static_cast<Dog *>( animals[ size ] )->makeSound();
+	std::cout << std::endl;
+	print_title( "animals[ 0 ] = animals[ 0 ]", C_PURPLE, C_YELLOW );
+	std::cout << C_WHITE;
+	*( static_cast<Cat *>( animals[ 0 ] ) ) = *( static_cast<Cat *>( animals[ 0 ] ) );
+	std::cout << "animal[ 0 ] -> getIdea( 0 ): " << static_cast<Cat *>( animals[ 0 ] )->getIdea( 0 );
+	std::cout << " |---| getType(): " << static_cast<Cat *>( animals[ 0 ] )->getType();
+	std::cout << " |---| makeSound(): ";
+	static_cast<Dog *>( animals[ 0 ] )->makeSound();
+	std::cout << std::endl;
 	( void )c_size;
-	( void )animals;
+	( void )size;
 	( void )cmp;
 	return ;
 }
@@ -230,7 +248,9 @@ void	test_Animal_v2( unsigned short int size )
 		std::cout << std::endl;
 	}
 
+	print_title( "Basic", C_BLUE, C_YELLOW );
 	test_Animal_basic_v2( animals, size, c_size, lower_than );
+	print_title( "Advanced", C_BLUE, C_YELLOW );
 	test_Animal_advanced_v2( animals, size, c_size, lower_than );
 
 	print_title( "Destructors", C_RED, C_YELLOW );

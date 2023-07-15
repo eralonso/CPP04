@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:44:50 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/14 18:55:57 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:53:00 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Dog&	Dog::operator=( const Dog& dog )
 	{
 		if ( this->_brain != NULL )
 			delete this->_brain;
-		this->_brain = dog._brain ? new Brain( *dog._brain ) : new Brain();
+		this->_brain = dog._brain != NULL ? new Brain( *dog._brain ) : new Brain();
 		this->_type = dog._type;
 	}
 	return ( *this );
