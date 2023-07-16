@@ -17,6 +17,7 @@
 #include	"WrongCat.hpp"
 #include	<iostream>
 #include	<iomanip>
+#include	<sstream>
 
 #define FILL		40
 #define C_DEFAULT	"\033[0m"
@@ -46,6 +47,16 @@ void    print_title( std::string msg, std::string clr_text, std::string clr_bord
 	std::cout << "|" << std::setfill( ' ' ) << std::setw( size + 1 ) << "|" << std::endl;
 	std::cout << "|" << std::setfill( '_' ) << std::setw( size + 2 ) << "|\n" << std::endl;
 	std::cout << C_DEFAULT;
+}
+
+std::string	long_to_string( long num )
+{
+	std::string		str;
+	std::stringstream	ss;
+
+	ss << num;
+	str = ss.str();
+	return ( str );
 }
 
 void	test_WrongAnimal( void )
@@ -111,7 +122,7 @@ void	test_Animal_v1( void )
 
 	print_title( "Methods: makeSound", C_PURPLE, C_YELLOW );
 	std::cout << "animal -> ";
-	animal->makeSound();	
+	animal->makeSound();
 	std::cout << "animalDog -> ";
 	animalDog->makeSound();
 	std::cout << "animalCat -> ";
@@ -223,12 +234,12 @@ void	test_addIdea_getIndex_getCurrentIdea( Animal* animals[], unsigned short int
 	std::cout << C_WHITE;
 	std::cout << "animals[ " << idx << " ]->getIndex(): " << static_cast<Cat *>( animals[ idx ] )->getIndex() << std::endl;
 	std::cout << "animals[ " << idx << " ]->getCurrentIdea(): " << static_cast<Cat *>( animals[ idx ] )->getCurrentIdea() << std::endl;
-	title = "Adding 99 ideas to animals[ " + std::to_string( idx ) + " ]: animals[ " + std::to_string( idx ) +  " ]->addIdea( \"Test Idea i\" )";
+	title = "Adding 99 ideas to animals[ " + long_to_string( idx ) + " ]: animals[ " + long_to_string( idx ) +  " ]->addIdea( \"Test Idea i\" )";
 	print_title( title, C_PINK, C_YELLOW );
 	std::cout << C_WHITE;
 	for ( unsigned int i = 1; i < MAX_IDEAS; i++)
 	{
-		idea = "Test Idea " + std::to_string( i );
+		idea = "Test Idea " + long_to_string( i );
 		static_cast<Cat *>( animals[ idx ] )->addIdea( idea );
 	}
 	std::cout << "animals[ " << idx << " ]->printBrain( std::cout ) = " << std::endl;
@@ -237,7 +248,7 @@ void	test_addIdea_getIndex_getCurrentIdea( Animal* animals[], unsigned short int
 	std::cout << C_WHITE;
 	std::cout << "animals[ " << idx << " ]->getIndex(): " << static_cast<Cat *>( animals[ idx ] )->getIndex() << std::endl;
 	std::cout << "animals[ " << idx << " ]->getCurrentIdea(): " << static_cast<Cat *>( animals[ idx ] )->getCurrentIdea() << std::endl;
-	title = "Adding 1 idea to animals[ " + std::to_string( idx ) + " ]: animals[ " + std::to_string( idx ) +  " ]->addIdea( \"Overflow test idea\" )";
+	title = "Adding 1 idea to animals[ " + long_to_string( idx ) + " ]: animals[ " + long_to_string( idx ) +  " ]->addIdea( \"Overflow test idea\" )";
 	print_title( title, C_PINK, C_YELLOW );
 	std::cout << C_WHITE;
 	static_cast<Cat *>( animals[ idx ] )->addIdea( "Overflow test idea" );
@@ -254,7 +265,7 @@ void	test_getIdea_idx( Animal* animals[], unsigned int idx, long int idea_idx )
 {
 	std::string		title;
 
-	title = "animals[ " + std::to_string( idx ) + " ]: animals[ " + std::to_string( idx ) +  " ]->getIdea( " + std::to_string( idea_idx ) + " )";
+	title = "animals[ " + long_to_string( idx ) + " ]: animals[ " + long_to_string( idx ) +  " ]->getIdea( " + long_to_string( idea_idx ) + " )";
 	print_title( title, C_PINK, C_YELLOW );
 	std::cout << C_WHITE;
 	std::cout << "animals[ " << idx << " ]->getIdea( " << idea_idx << " ): " << static_cast<Cat *>( animals[ idx ] )->getIdea( idea_idx ) << std::endl;	
@@ -340,10 +351,10 @@ void	test_Animal_v2( unsigned short int size )
 
 int	main( void )
 {
-	print_title( "Test: Animal V.1", C_BLUE, C_YELLOW );
+/*	print_title( "Test: Animal V.1", C_BLUE, C_YELLOW );
 	test_Animal_v1();
 	print_title( "Test: WrongAnimal", C_BLUE, C_YELLOW );
-	test_WrongAnimal();
+	test_WrongAnimal();*/
 	print_title( "Test: Animal V.2", C_BLUE, C_YELLOW );
 	test_Animal_v2( 5 );
 	return ( 0 );

@@ -22,9 +22,11 @@ PINK		:=	\033[1;95m
 CIAN		:=	\033[1;96m
 
 #<--------------------------------->NAME<------------------------------------>#
-NAME		:=	abstract
+PRENAME		:=	"Abstract class"
+NAME		:=	$(shell echo $(PRENAME) | tr ' ' '_')
+
 #<--------------------------------->VARS<------------------------------------>#
-NULL		:=	
+NULL		:=
 SPACE		:=	$(NULL) #
 
 #<--------------------------------->ROOTS<----------------------------------->#
@@ -38,11 +40,11 @@ DEP_ROOT	:=	.deps/
 INC_ROOT	:=	inc/
 
 #<-------------------------------->LIBRARYS<--------------------------------->#
-LIB_A		:=	
+LIB_A		:=
 
-LIB_ADD_DIR	:=	
+LIB_ADD_DIR	:=
 
-LIB_SEARCH	:=	
+LIB_SEARCH	:=
 
 #<-------------------------------->HEADERS<---------------------------------->#
 HEADERS		:=	$(INC_ROOT)
@@ -118,8 +120,8 @@ $(OBJ_ROOT)%.o : %.$(SUFFIX) %.d $(LIB_A) | $(call create_dir,$(OBJ_ROOT))
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME) : $(DEPS) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
-	echo "\n$(GREEN)$(NAME) has been compiled\n$(DEF_COLOR)"
+	$(CC) $(CFLAGS) $(OBJS) -o $(PRENAME)
+	echo "\n$(GREEN)"$(PRENAME)" has been compiled\n$(DEF_COLOR)"
 
 clean :
 	$(RM) $(OBJ_ROOT) $(DEP_ROOT)
@@ -129,7 +131,7 @@ clean :
 
 fclean :
 	$(MAKE) $(MKFLAGS) clean
-	$(RM) $(NAME)
+	$(RM) $(PRENAME)
 	echo ""
 	echo "$(RED)Program has been removed$(DEF_COLOR)"
 
