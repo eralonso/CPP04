@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:29:09 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 15:35:16 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:00:43 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ class AMateria
 {
 	protected:
 		std::string	_type;
-	private:
-		AMateria( void );
 	public:
+		AMateria( void );
 		AMateria( const std::string& type );
 		AMateria( const AMateria& materia );
 		virtual ~AMateria( void );

@@ -6,17 +6,9 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 21:59:00 by marza-ga          #+#    #+#             */
-/*   Updated: 2023/07/13 14:24:26 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:37:55 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-Output:
-$> clang++ -W -Wall -Werror *.cpp
-$> ./a.out | cat -e
-* shoots an ice bolt at bob *$
-* heals bob's wounds *$
-*/
 
 #include	<iostream>
 #include	<iomanip>
@@ -36,25 +28,6 @@ $> ./a.out | cat -e
 #define C_CYAN		"\033[1;96m"
 #define C_WHITE		"\033[1;97m"
 #define C_PURPLE	"\033[1;38;2;150;25;250m"
-
-void    print_title( std::string msg, std::string clr_text, std::string clr_border )
-{
-	int	fill;
-	int	odd;
-	int	size;
-
-	size = msg.length() >= FILL ? msg.length() + 10 : FILL;
-	fill = ( size - msg.length() ) / 2;
-	odd = msg.length() < FILL ? msg.length() % 2 : 0;
-	std::cout << clr_border;
-	std::cout << "\n " << std::setfill( '_' ) << std::setw( size ) << "" << std::endl;
-	std::cout << "|" << std::setfill( ' ' ) << std::setw( size + 1 ) << "|" << std::endl;
-	std::cout << "|" << std::setfill( ' ' ) << std::setw( size + 1 ) << "|" << std::endl;
-	std::cout << "|" << std::setfill( ' ' ) << std::setw( fill + odd ) << "" << clr_text << msg << clr_border << std::setw( fill + 1 ) << "|" << std::endl;
-	std::cout << "|" << std::setfill( ' ' ) << std::setw( size + 1 ) << "|" << std::endl;
-	std::cout << "|" << std::setfill( '_' ) << std::setw( size + 2 ) << "|\n" << std::endl;
-	std::cout << C_DEFAULT;
-}
 
 // int main( void )
 // {
@@ -76,6 +49,24 @@ void    print_title( std::string msg, std::string clr_text, std::string clr_bord
 // 	return 0;
 // }
 
+void    print_title( std::string msg, std::string clr_text, std::string clr_border )
+{
+	int	fill;
+	int	odd;
+	int	size;
+
+	size = msg.length() >= FILL ? msg.length() + 10 : FILL;
+	fill = ( size - msg.length() ) / 2;
+	odd = msg.length() < FILL ? msg.length() % 2 : 0;
+	std::cout << clr_border;
+	std::cout << "\n " << std::setfill( '_' ) << std::setw( size ) << "" << std::endl;
+	std::cout << "|" << std::setfill( ' ' ) << std::setw( size + 1 ) << "|" << std::endl;
+	std::cout << "|" << std::setfill( ' ' ) << std::setw( size + 1 ) << "|" << std::endl;
+	std::cout << "|" << std::setfill( ' ' ) << std::setw( fill + odd ) << "" << clr_text << msg << clr_border << std::setw( fill + 1 ) << "|" << std::endl;
+	std::cout << "|" << std::setfill( ' ' ) << std::setw( size + 1 ) << "|" << std::endl;
+	std::cout << "|" << std::setfill( '_' ) << std::setw( size + 2 ) << "|\n" << std::endl;
+	std::cout << C_DEFAULT;
+}
 
 int main( void )
 {
@@ -137,7 +128,7 @@ int main( void )
 
 	print_title( "5. Testing Character Assignation overload \"vilma = oktorok\" for deep copy and changed vilma afterwards", C_GREEN, C_YELLOW );
 	*oktorok = *vilma;
-	
+
 	vilma->unequip(0);
 	std::cout << "VILMA" << std::endl;
 	vilma->printMaterias();
@@ -150,7 +141,7 @@ int main( void )
 // ------------------------------------------------------------------------------------ //
 
 	print_title( "6. Testing character copy constructor for deep copy \"stardust = Character(vilma)\" and changed vilma afterwards", C_GREEN, C_YELLOW );
-		
+
 	vilma->printMaterias();
 	Character* stardust = new Character(*vilma);
     stardust->printMaterias();
@@ -168,7 +159,7 @@ int main( void )
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
-	
+
 	print_title( "7. \"vilma\" using all equiped materias on \"oktorok\" ", C_GREEN, C_YELLOW );
 	vilma->use(0, *oktorok);
 	vilma->use(1, *oktorok);
@@ -214,7 +205,7 @@ int main( void )
 	print_title( "10. Testing if unequiped materia is freed", C_GREEN, C_YELLOW );
 
 	ICharacter* test = new Character("test");
-	
+
 	tmp = src->createMateria("ice");
 	test->equip(tmp);
    	test->unequip(0);
@@ -224,33 +215,33 @@ int main( void )
 // ------------------------------------------------------------------------------------ //
 
 	print_title( "11. Deleting \"vilma\", \"oktorok\", \"stardust\" and \"lucifer\"", C_RED, C_YELLOW );
-	
+
 	print_title( "11 -> TEST", C_RED, C_YELLOW );
 	delete test;
 	std::cout << std::endl;
-	
+
 	print_title( "11 -> LUCIFER", C_RED, C_YELLOW );
 	delete lucifer;
 	std::cout << std::endl;
-	
+
 	print_title( "11 -> STARDUST", C_RED, C_YELLOW );
 	stardust->printMaterias();
 	stardust->printTrash();
 	delete stardust;
 	std::cout << std::endl;
-	
+
 	print_title( "11 -> OKTOROK", C_RED, C_YELLOW );
 	oktorok->printMaterias();
 	oktorok->printTrash();
 	delete oktorok;
 	std::cout << std::endl;
-	
+
 	print_title( "11 -> VILMA", C_RED, C_YELLOW );
 	vilma->printMaterias();
 	vilma->printTrash();
 	delete vilma;
 	std::cout << std::endl;
-	
+
 	print_title( "11 -> SRC", C_RED, C_YELLOW );
 	delete src;
 

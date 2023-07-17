@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:31:03 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 19:33:07 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:19:11 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 class AMateriaNode
 {
 	private:
-		AMateriaNode*	_prev;
-		AMateriaNode*	_next;
-		AMateria*		_content;
-    bool        _delete;
+		AMateriaNode	*_prev;
+		AMateriaNode	*_next;
+		AMateria		*_content;
+		bool    	    _delete;
 	public:
 		AMateriaNode( void );
 		AMateriaNode( AMateria* materia );
@@ -33,7 +33,7 @@ class AMateriaNode
 		AMateria*		getContent( void ) const;
 		void			setPrev( AMateriaNode* node );
 		void			setNext( AMateriaNode* node );
-    void      setDelete( bool del );
+		void			setDelete( bool del );
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:34:29 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 19:33:18 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:19:13 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ AMateriaNode::AMateriaNode( void )
 	this->_prev = NULL;
 	this->_next = NULL;
 	this->_content = NULL;
-  this->_delete = true;
+	this->_delete = true;
 }
 
 AMateriaNode::AMateriaNode( AMateria* materia )
@@ -25,7 +25,7 @@ AMateriaNode::AMateriaNode( AMateria* materia )
 	this->_prev = NULL;
 	this->_next = NULL;
 	this->_content = materia;
-  this->_delete = true;
+	this->_delete = true;
 }
 
 AMateriaNode::AMateriaNode( const AMateriaNode& node )
@@ -33,7 +33,7 @@ AMateriaNode::AMateriaNode( const AMateriaNode& node )
 	this->_prev = NULL;
 	this->_next = NULL;
 	this->_content = node._content->clone();
-  this->_delete = node._delete;
+	this->_delete = node._delete;
 }
 
 AMateriaNode::~AMateriaNode( void )
@@ -50,7 +50,7 @@ AMateriaNode&	AMateriaNode::operator=( const AMateriaNode& node )
 		this->_prev = node._prev;
 		this->_next = node._next;
 		this->_content = node._content->clone();
-    this->_delete = node._delete;
+		this->_delete = node._delete;
 	}
 	return ( *this );
 }
@@ -82,5 +82,5 @@ void	AMateriaNode::setNext( AMateriaNode* node )
 
 void  AMateriaNode::setDelete( bool del )
 {
-  this->_delete = del;
+	this->_delete = del;
 }

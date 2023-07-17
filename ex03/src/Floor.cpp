@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:45:05 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 19:15:32 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:42:06 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ Floor::Floor( const Floor& floor )
 	AMateriaNode	*tmp;
 
 	size = floor.getSize();
-  this->_size = 0;
-  this->_first = NULL;
-  this->_last = NULL;
+	this->_size = 0;
+	this->_first = NULL;
+	this->_last = NULL;
 	if ( size > 0 && floor._first != NULL )
-  {
+	{
 		tmp = floor._first;
 		for ( ; this->_size < size; this->_size++ )
 		{
-      if ( tmp != NULL )
-        this->addNode( new AMateriaNode( *tmp ) );
+			if ( tmp != NULL )
+				this->addNode( new AMateriaNode( *tmp ) );
 			tmp = tmp->getNext();
 		}
-  }
+	}
 }
 
 Floor::~Floor( void )
@@ -48,7 +48,6 @@ Floor::~Floor( void )
 
 Floor&	Floor::operator=( const Floor& floor )
 {
-	
 	short int		size;
 	AMateriaNode	*tmp;
 
@@ -65,17 +64,42 @@ Floor&	Floor::operator=( const Floor& floor )
 				tmp = tmp->getNext();
 			}
 		}
-    this->_size = size;
+		this->_size = size;
 	}
 	return ( *this );
 }
 
+bool	Floor::isDup( AMateriaNode* node ) const
+{
+	AMateriaNode	*tmp;
+
+	tmp = this->_first;
+	while ( tmp != NULL )
+	{
+		if ( tmp == node )
+			return ( true );
+		tmp = tmp->getNext();
+	}
+	return ( false );
+}
+
 void	Floor::addNode( AMateriaNode* node )
 {
+	AMateriaNode	*tmp;
+
 	if ( this->_size == 0 )
 		this->_first = node;
 	else
 	{
+		if ( this->isDup( node ) == true )
+			return ;
+		tmp = this->_first;
+		while ( tmp != NULL )
+		{
+			if ( tmp->getContent() == node->getContent() )
+				node->setDelete( false );
+			tmp = tmp->getNext();
+		}
 		this->_last->setNext( node );
 		node->setPrev( this->_last );
 	}
@@ -88,41 +112,41 @@ void	Floor::clean( void )
 	AMateriaNode	*tmp;
 	AMateriaNode	*tmp2;
 
-  if ( this->_size > 0 && this->_first != NULL )
-  {
-    tmp = this->_first;
-	  while ( tmp != NULL )
-  	{
-  		tmp2 = tmp->getNext();
-  		delete tmp;
-	  	tmp = tmp2;
-    }
-    this->_size = 0;
-    this->_first = NULL;
-    this->_last = NULL;
+	if ( this->_size > 0 && this->_first != NULL )
+	{
+		tmp = this->_first;
+		while ( tmp != NULL )
+		{
+			tmp2 = tmp->getNext();
+			delete tmp;
+			tmp = tmp2;
+		}
+		this->_size = 0;
+		this->_first = NULL;
+		this->_last = NULL;
 	}
 }
 
 void  Floor::unsetNode( AMateria* materia )
 {
-  AMateriaNode*  tmp;
+	AMateriaNode*  tmp;
 
-  tmp = this->_first;
-  while ( tmp != NULL && tmp->getContent() != materia )
-    tmp = tmp->getNext();
-  if ( tmp != NULL )
-  {
-    if ( tmp->getPrev() != NULL )
-      tmp->getPrev()->setNext( tmp->getNext() );
-    if ( tmp->getNext() != NULL )
-      tmp->getNext()->setPrev( tmp->getPrev() );
-    if ( this->_first == tmp )
-      this->_first = tmp->getNext();
-    if ( this->_last == tmp )
-      this->_last = tmp->getPrev();
-    tmp->setDelete( false );
-    delete tmp;
-  }
+	tmp = this->_first;
+	while ( tmp != NULL && tmp->getContent() != materia )
+		tmp = tmp->getNext();
+	if ( tmp != NULL )
+	{
+		if ( tmp->getPrev() != NULL )
+			tmp->getPrev()->setNext( tmp->getNext() );
+		if ( tmp->getNext() != NULL )
+			tmp->getNext()->setPrev( tmp->getPrev() );
+		if ( this->_first == tmp )
+			this->_first = tmp->getNext();
+		if ( this->_last == tmp )
+			this->_last = tmp->getPrev();
+		tmp->setDelete( false );
+		delete tmp;
+    }
 }
 
 AMateriaNode*	Floor::getFirst( void ) const

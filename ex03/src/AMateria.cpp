@@ -6,15 +6,15 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:46:35 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 19:08:35 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:00:18 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include	"AMateria.hpp"
 
-AMateria::AMateria( void ): _type( "Untype" )
+AMateria::AMateria( void ): _type( "Unknown type" )
 {
-	std::cout << "AMateria: Default constructor called" << std::endl;	
+	std::cout << "AMateria: Default constructor called" << std::endl;
 }
 
 AMateria::AMateria( const std::string& type ): _type( type )
@@ -24,7 +24,7 @@ AMateria::AMateria( const std::string& type ): _type( type )
 
 AMateria::AMateria( const AMateria& materia ): _type( materia._type )
 {
-	std::cout << "AMateria: Copy constructor called" << std::endl;	
+	std::cout << "AMateria: Copy constructor called" << std::endl;
 }
 
 AMateria::~AMateria( void )

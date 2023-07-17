@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:39:42 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 19:45:30 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:19:16 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ Character&	Character::operator=( const Character& character )
 				this->_inventory[ i ] = character._inventory[ i ]->clone();
 		}
 		this->_currIdx = character._currIdx;
-    if ( this->_floor != NULL )
-      delete this->_floor;
+		if ( this->_floor != NULL )
+			delete this->_floor;
 		if ( character._floor != NULL )
 			this->_floor = new Floor( *character._floor );
 	}
@@ -83,11 +83,11 @@ void	Character::equip( AMateria* materia )
 {
 	std::cout << "Character: equip called with materia = " << materia << std::endl;
 	if ( this->_currIdx == -1 )
-  {
-    if ( this->_floor != NULL )
-      this->_floor->addNode( new AMateriaNode( materia ) );
-    return ;
-  }
+	{
+		if ( this->_floor != NULL )
+			this->_floor->addNode( new AMateriaNode( materia ) );
+		return ;
+	}
 	for ( int i = 0; i < N_SLOTS; i++ )
 		if ( this->_inventory[ i ] == materia )
 			return ;
@@ -97,15 +97,15 @@ void	Character::equip( AMateria* materia )
 			break ;
 	if ( this->_inventory[ this->_currIdx ] != NULL )
 		this->_currIdx = -1;
-  if ( this->_floor != NULL )
-    this->_floor->unsetNode( materia );
+	if ( this->_floor != NULL )
+		this->_floor->unsetNode( materia );
 }
 
 void	Character::unequip( int idx )
 {
 	if ( idx < 0 || idx >= N_SLOTS || this->_inventory[ idx ] == NULL )
 		return ;
-  std::cout << "Character: unequip called with materia = " << this->_inventory[ idx ] << std::endl;
+	std::cout << "Character: unequip called with materia = " << this->_inventory[ idx ] << std::endl;
 	this->_floor->addNode( new AMateriaNode( this->_inventory[ idx ] ) );
 	this->_inventory[ idx ] = NULL;
 	this->_currIdx = idx < this->_currIdx ? idx : this->_currIdx == -1 ? idx : this->_currIdx;

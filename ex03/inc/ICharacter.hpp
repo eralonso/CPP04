@@ -29,7 +29,6 @@ class ICharacter
 		virtual void				use( int idx, ICharacter& target ) = 0;
 		virtual void				printMaterias( void ) = 0;
 		virtual void				printTrash( void ) = 0;
-
 };
 
 #endif

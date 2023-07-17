@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:38:48 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 17:55:32 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:29:36 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ class Floor
 		Floor( const Floor& floor );
 		~Floor( void );
 		Floor&				operator=( const Floor& floor );
+		bool				isDup( AMateriaNode* node ) const;
 		void				addNode( AMateriaNode* node );
 		void				clean( void );
-    void        unsetNode( AMateria* node);
+		void				unsetNode( AMateria* node);
 		AMateriaNode		*getNode( unsigned short  int idx ) const;
 		AMateriaNode		*getFirst( void ) const;
 		AMateriaNode		*getLast( void ) const;

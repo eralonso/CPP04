@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:26:09 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/12 19:10:04 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:19:35 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ MateriaSource&	MateriaSource::operator=( const MateriaSource& materiaSource )
 void	MateriaSource::learnMateria( AMateria* materia )
 {
 	if ( this->_currIdx == -1 )
-  {
-    if ( materia != NULL )
-      delete materia;
-    return ;
-  }
+	{
+		if ( materia != NULL )
+			delete materia;
+		return ;
+	}
 	for ( int i = 0; i < N_MATERIAS; i++ )
 		if ( this->_materias[ i ] == materia )
 			return ;
@@ -84,3 +84,4 @@ AMateria*	MateriaSource::createMateria( const std::string& type )
 	}
 	return ( 0 );
 }
+

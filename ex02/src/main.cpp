@@ -6,7 +6,7 @@
 /*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:11:54 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/15 19:00:11 by eralonso         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:45:06 by eralonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void    print_title( std::string msg, std::string clr_text, std::string clr_bord
 
 std::string	long_to_string( long num )
 {
-	std::string		str;
+	std::string			str;
 	std::stringstream	ss;
 
 	ss << num;
@@ -363,10 +363,10 @@ int	main( void )
 	test_Animal_v1();
 	print_title( "Test: WrongAnimal", C_BLUE, C_YELLOW );
 	test_WrongAnimal();
-	print_title( "Test: Animal V.2", C_BLUE, C_YELLOW );
-	test_Animal_v2( 5 );
-*/
 	print_title( "Test: AAnimal", C_BLUE, C_YELLOW );
 	test_AAnimal();
+*/
+	print_title( "Test: Animal V.2", C_BLUE, C_YELLOW );
+	test_Animal_v2( 5 );
 	return ( 0 );
 }
